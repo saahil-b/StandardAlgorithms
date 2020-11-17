@@ -60,9 +60,14 @@ class Sorting {
             allArray.append([item])
         }
         
-        if Int(allArray.count/2) != allArray.count/2 {
-            allArray[allArray.count - 2].append(allArray[allArray.count - 1][0])
-            allArray.remove(at: (allArray.count - 1))
+        if allArray.count % 2 != 0{
+            if allArray[allArray.count - 1][0] > allArray[allArray.count - 2][0] {
+                allArray[allArray.count - 2].append(allArray[allArray.count - 1][0])
+                allArray.remove(at: (allArray.count - 1))
+            } else {
+                allArray[allArray.count - 1].append(allArray[allArray.count - 2][0])
+                allArray.remove(at: (allArray.count - 2))
+            }
         }
         
         while allArray.count > 1 {
@@ -70,32 +75,33 @@ class Sorting {
             var changeArray: [[Int]] = []
             
             for i in 0..<(((allArray.count)/2)) {
-                let first = allArray[2*i]
-                let second = allArray[(2*i) + 1]
+                var first = allArray[2*i]
+                var second = allArray[(2*i) + 1]
                 
-                var currentF = 0
-                var currentS = 0
                 changeArray.append([])
                 
-                while currentF < first.count && currentS < second.count {
-                    if first[currentF] < second[currentS] {
-                        changeArray[i].append(first[currentF])
-                        currentF += 1
+                while first.count > 0 && second.count > 0 {
+                    if first[0] < second[0] {
+                        changeArray[i].append(first[0])
+                        first.remove(at: 0)
+                        
                     } else {
-                        changeArray[i].append(second[currentS])
-                        currentS += 1
+                        changeArray[i].append(second[0])
+                        second.remove(at: 0)
+                        
                     }
                 }
-                    
-                if currentF >= first.count {
-                    for j in currentS..<(second.count) {
-                        changeArray[i].append(second[j])
-                    }
-                } else {
-                    for j in currentF..<(first.count) {
-                        changeArray[i].append(first[j])
-                    }
+                
+                if first.count > 0 {
+                    for item in first {
+                        changeArray[i].append(item)
                         
+                    }
+                } else if second.count > 0 {
+                    for item in second {
+                        changeArray[i].append(item)
+                        
+                    }
                 }
             }
             
@@ -103,6 +109,76 @@ class Sorting {
         }
         
         return allArray[0]
+    }
+    
+    func quickSort(data: [Int]) -> [Int] {
+        
+        if data.count <= 1 {
+            return data
+        }
+        
+        var array = data
+        
+        // get pivot
+        
+        let pivot = data[0]
+        
+        array.remove(at: 0)
+        
+        //make upper and lower arrays
+        var upper: [Int] = []
+        var lower: [Int] = []
+        
+        for item in array {
+            if item > pivot {
+                upper.append(item)
+            } else {
+                lower.append(item)
+            }
+        }
+        
+        //sort then add to final array
+        
+        var finalArray: [Int] = []
+        
+        for item in quickSort(data: lower) {
+            finalArray.append(item)
+        }
+        finalArray.append(pivot)
+        for item in quickSort(data: upper) {
+            finalArray.append(item)
+        }
+        
+        return finalArray
+    }
+    
+    func insertionSort(data: [Int]) -> [Int] {
+        var array = data
+        var done = false
+        var current = Int()
+        var temp = Int()
+
+        repeat {
+            done = true
+
+            for i in 0..<(array.count - 1){
+                if array[i] > array[i + 1]{
+                    current = i + 1
+                    done = false
+                    while current > 0 && array[current - 1] > array[current]{
+                        temp = array[current]
+                        array[current] = array[current - 1]
+                        array[current - 1] = temp
+                        current -= 1
+                    }
+                    break
+
+                }
+            }
+
+        } while done == false
+
+        return array
     }
     
 }

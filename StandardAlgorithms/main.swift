@@ -7,7 +7,4 @@
 
 import Foundation
 
-print("Hello, World!")
-
-let a = 5
-print("The value of a is \(a)")
+print(Sorting().quickSort(data: [3,7,4,9,1]))
