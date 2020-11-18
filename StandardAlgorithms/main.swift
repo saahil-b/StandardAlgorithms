@@ -7,4 +7,4 @@
 
 import Foundation
 
-print(Sorting().quickSort(data: [3,7,4,9,1]))
+print(Unknown().secondAlgorithm(data: [1,2,2]))
