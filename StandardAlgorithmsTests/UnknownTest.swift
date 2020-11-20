@@ -57,5 +57,60 @@ class UnknownTest: XCTestCase {
             XCTAssertEqual(result, test.expected)
         }
     }
+    
+    func testThirdAlgorithmwithIntArray() {
+        //arrange
+        let unknown = Unknown()
+        let data = [1,9,9,3,2]
+        let expected = 2
+        var result: Int?
+        
+        
+        
+        if let x = unknown.thirdAlgorithm(data: data) {
+            result = x
+        } else {
+            result = nil
+        }
+        
+        XCTAssertEqual(result, expected)
+        
+    }
+    
+    func testThirdAlgorithmwithMultipleIntArrays() {
+        
+        let unknown = Unknown()
+        
+        let testData = [(data: [1,1,2,2,2,3], expected: 2), (data: [0,0,3,4,6,6,6,7], expected: 3), (data: [1,2,2], expected: 2), (data: [-1,2,2,-1,4,9], expected: 2)]
+        
+        for test in testData {
+            let result = unknown.thirdAlgorithm(data: test.data)
+            XCTAssertEqual(result, test.expected)
+        }
+    }
+    
+    func testThirdAlgorithmforNilReturn() {
+        
+        let unknown = Unknown()
+        
+        let testData = [[1,1], [0], [], [2,2,2,2,2]]
+        
+        for test in testData {
+            let result = unknown.thirdAlgorithm(data: test)
+            XCTAssertEqual(result, nil)
+        }
+    }
+    
+    func testFourthAlgorithmwithIntArray() {
+        
+        let unknown = Unknown()
+        
+        let data = [1,2,6,3,4,4,2,9,2]
+        
+        let result = unknown.fourthAlgorithm(data: data)
+        
+        XCTAssertEqual(result, 2)
+        
+    }
 
 }

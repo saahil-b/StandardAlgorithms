@@ -7,4 +7,6 @@
 
 import Foundation
 
-print(Unknown().secondAlgorithm(data: [1,2,2]))
+if let x = Unknown().thirdAlgorithm(data: [1,9,2,4]) {
+    print(x)
+}

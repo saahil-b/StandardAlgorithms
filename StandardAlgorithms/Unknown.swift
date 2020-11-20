@@ -57,4 +57,62 @@ class Unknown {
         return result
         
     }
+    
+    func thirdAlgorithm(data: [Int]) -> Int? {
+        
+        if data.count < 2 {
+            return nil
+        }
+        
+        var smallest = data[0]
+        
+        for item in data {
+            if item < smallest {
+                smallest = item
+            }
+        }
+        
+        var x = 0
+        
+        while data[x] == smallest && x < (data.count - 1){
+            x += 1
+        }
+        
+        if data[x] == smallest {
+            return nil
+        }
+        
+        var result = data[x]
+        
+        
+        for item in data {
+            if item > smallest && item < result {
+                result = item
+            }
+        }
+        
+        return result
+        
+    }
+    
+    func fourthAlgorithm(data: [Int]) {
+        var freqDict: [Int: Int] = [:]
+        
+        for item in data {
+            if freqDict.keys.contains(item) {
+                freqDict[item]! += 1
+            } else {
+                freqDict[item] = 1
+            }
+        }
+        
+        var largest = 0
+        var result: Int
+        
+        for (key,value) in freqDict {
+            if value > largest {
+                result = key
+            }
+        }
+    }
 }
