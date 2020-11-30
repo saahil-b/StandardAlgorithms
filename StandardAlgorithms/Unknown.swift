@@ -95,7 +95,7 @@ class Unknown {
         
     }
     
-    func fourthAlgorithm(data: [Int]) {
+    func fourthAlgorithm(data: [Int]) -> Int {
         var freqDict: [Int: Int] = [:]
         
         for item in data {
@@ -107,12 +107,38 @@ class Unknown {
         }
         
         var largest = 0
-        var result: Int
+        var result = 1
         
         for (key,value) in freqDict {
             if value > largest {
                 result = key
+                largest = value
             }
         }
+        
+        return result
+    }
+    
+    func fifthAlgorithm(url: String) -> String {
+        
+        var splitUrl = url.split(separator: ".")
+        
+        let finalItem = (splitUrl[splitUrl.count - 1]).split(separator: "/")[0]
+        
+        splitUrl.remove(at: (splitUrl.count - 1))
+        splitUrl.append(finalItem)
+        
+        let keyWords = ["com", "co", "org"]
+        
+        var domainName = ""
+        
+        for i in (1...(splitUrl.count - 1)) {
+            //
+            if keyWords.contains(String(splitUrl[i])) {
+                domainName = String(splitUrl[i-1])
+            }
+        }
+        
+        return domainName
     }
 }

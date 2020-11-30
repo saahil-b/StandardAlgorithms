@@ -112,5 +112,42 @@ class UnknownTest: XCTestCase {
         XCTAssertEqual(result, 2)
         
     }
+    
+    func testFifthAlgorithmwithNormalUrl() {
+        
+        let unkown = Unknown()
+        
+        let url = "www.google.com"
+        let domainName = "google"
+        
+        let result = unkown.fifthAlgorithm(url: url)
+        
+        XCTAssertEqual(result, domainName)
+    }
+    
+    func testFifthAlgorithmwithWeirdUrl() {
+        
+        let unkown = Unknown()
+        
+        let url = "www.etoncollege.org.uk"
+        let domainName = "etoncollege"
+        
+        let result = unkown.fifthAlgorithm(url: url)
+        
+        XCTAssertEqual(result, domainName)
+    }
+    
+    func testFifthAlgorithmRemovesFS() {
+        
+        let unknown = Unknown()
+        
+        let url = "https://developer.apple.com/documentation/swift/string/2894564-split"
+        
+        let domainName = "apple"
+        
+        let result = unknown.fifthAlgorithm(url: url)
+        
+        XCTAssertEqual(result, domainName)
+    }
 
 }
